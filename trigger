@@ -10,3 +10,14 @@ END
 --执行trigger
 delete from payments
 where client_id=5 and invoice_id=3
+
+--创建事件
+delimiter //
+create event yearly_delete_state_audit_rows
+on schedule
+ every 1 year starts '2021-10-01' ends '2027-10-01'
+ do begin
+	delete from payments_audit
+    where action_date< now()-interval 1 year;
+end //
+delimiter ;
