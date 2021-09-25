@@ -1,0 +1,10 @@
+# SQL-01
+Q:find the employees who earn more than their managers.
+select em.Name
+from Employee em
+    join Employee ma
+    on em.Id=ma.ManagerId -->  on em.ManagerId=ma.Id 
+where em.Salary>ma.Salary
+
+#new skill (ahow Number)
+select count(Email) as num
